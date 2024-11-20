@@ -26,11 +26,17 @@ while True:
         case 'Edit':
             todos = functions.get_todos()
             print(todos)
-            todo_to_edit = values['todos'][0]
+            
+            if len(values['todos']) == 0:
+                continue
+            else:
+                todo_to_edit = values['todos'][0]
+
             print(todo_to_edit)
             new_todo = values['todo']+'\n'
 
             index = todos.index(todo_to_edit)
+    
             todos[index]=new_todo
             functions.write_todos(todos)
             window['todos'].update(values=todos)
