@@ -9,13 +9,13 @@ while True:
     action = action.strip()
     if action.startswith('add'):
             todo = action[4:]
-            todos = get_todos('todos.txt')
+            todos = get_todos()
             todos.append(todo.capitalize()+'\n')
-            write_todos('todos.txt', todos)
+            write_todos(todos)
 
     elif action.startswith('show'):
 
-            todos = get_todos('todos.txt')
+            todos = get_todos()
 
             for index, i in enumerate(todos):
                 i = i.strip('\n')
@@ -27,9 +27,9 @@ while True:
             c = int(action[5:])
             new = input("Edit: ")
 
-            todos = get_todos('todos.txt')
+            todos = get_todos()
             todos[c-1] = new + '\n'
-            write_todos('todos.txt', todos)
+            write_todos(todos)
 
         except ValueError:
              print("Your command is invalid")
@@ -39,10 +39,10 @@ while True:
         try:
             remove = int(input("Item number to complete: "))
 
-            todos = get_todos('todos.txt')
+            todos = get_todos()
             todo_to_remove = todos[remove-1].strip('\n')
             todos.pop(remove-1)
-            write_todos('todos.txt', todos)
+            write_todos(todos)
 
             message = f"Todo {todo_to_remove} was removed from the list!"
             print(message)
