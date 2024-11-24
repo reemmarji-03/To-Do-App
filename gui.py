@@ -4,7 +4,7 @@ import time
 import os
 
 if os.path.exists("todos.txt"):
-    with open('todos.text', 'w') as file:
+    with open("todos.txt", 'w') as file:
         pass
 
 g.theme("Purple")
