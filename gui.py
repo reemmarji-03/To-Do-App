@@ -1,6 +1,11 @@
 import functions 
 import FreeSimpleGUI as g
 import time
+import os
+
+if os.path.exists("todos.txt"):
+    with open('todos.text', 'w') as file:
+        pass
 
 g.theme("Purple")
 
