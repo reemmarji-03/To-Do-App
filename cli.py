@@ -1,11 +1,12 @@
 from functions import get_todos, write_todos  
 import time 
 from datetime import datetime
+import lookups
 
 print(time.strftime("%b %d, %Y -- %H:%M"))
 
 while True:
-    action=input("Select show, add, edit, complete, or exit: ")
+    action=input(lookups.first_input_statement)
     action = action.strip()
     if action.startswith('add'):
             todo = action[4:]
@@ -32,7 +33,7 @@ while True:
             write_todos(todos)
 
         except ValueError:
-             print("Your command is invalid")
+             print(lookups.invalid_command_statement)
              continue
              
     elif action.startswith('complete'):
@@ -47,12 +48,12 @@ while True:
             message = f"Todo {todo_to_remove} was removed from the list!"
             print(message)
         except IndexError:
-             print("Item is not in the list")
+             print(lookups.not_found_statement)
              continue
 
     elif action.startswith('exit'):
             break
     else:
-        print("Invalid Command")
+        print(lookups.invalid_command_statement)
 
-print("all done!!")
+print(lookups.final_statement)

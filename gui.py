@@ -1,31 +1,32 @@
 import functions 
 import FreeSimpleGUI as g
+import lookups
 import time
 import os
 
-if not os.path.exists("todos.txt"):
-    with open("todos.txt", 'w') as file:
+if not os.path.exists(lookups.todos_text_file):
+    with open(lookups.todos_text_file, 'w') as file:
         pass
 
-g.theme("Purple")
+g.theme(lookups.gui_theme)
 
-label = g.Text("Type in a to-do")
+label = g.Text(lookups.label_text)
 label_clock = g.Text('', key='clock')
 input_box = g.InputText(tooltip="Enter to-do", key="todo")
-add_button = g.Button("Add", size=[10, 1])
-list_box = g.Listbox(values=functions.get_todos(), key='todos', enable_events=True, size=[45,10])
+add_button = g.Button("Add", size=lookups.add_button_size)
+list_box = g.Listbox(values=functions.get_todos(), key='todos', enable_events=True, size=lookups.list_box_size)
 edit_button = g.Button("Edit")
 
 complete_button = g.Button("Complete")
 exit_button = g.Button("Exit")
 
-window = g.Window("My To-Do App", 
+window = g.Window(lookups.title, 
                  layout=[[label_clock],
                          [label],
                          [input_box, add_button], 
                          [list_box, edit_button, complete_button],
                          [exit_button]], 
-                 font=('Helvetica', 20))
+                 font=(lookups.gui_font, lookups.gui_size))
 
 while True:
     event, values = window.read(timeout=200)
